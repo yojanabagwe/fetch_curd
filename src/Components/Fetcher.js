@@ -6,20 +6,16 @@ import Pagination from './Pagination';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 const Fetcher = () => {
   const [data, setData] = useState([]);
   const [editedData, setEditedData] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(2);
   const [itemsPerPage] = useState(5);
-
-
   const handleDelete = (id) => {
     setData(prevData => prevData.filter(item => item.id !== id));
   };
-
-  const handleEdit = async (id, newData) => {
+const handleEdit = async (id, newData) => {
     // Update the data in the state with the edited data
     setData(prevData => prevData.map(item => (item.id === id ? newData : item)));
     // Clear the editedData state
@@ -38,7 +34,7 @@ const Fetcher = () => {
     }));
   };
 
-  const nextPage = () => {
+const nextPage = () => {
     setCurrentPage(prevPage => Math.min(prevPage + 1, totalPages));
   };
 const prevPage = () => {
@@ -67,8 +63,7 @@ const prevPage = () => {
             <th>Name</th>
             <th>Edit</th>
             <th>Delete</th>
-
-          </tr>
+            </tr>
         </thead>
         <tbody>
   {data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map(item => (
